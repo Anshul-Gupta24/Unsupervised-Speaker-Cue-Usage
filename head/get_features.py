@@ -316,7 +316,7 @@ def get_input(root):
 
 	#print filenames
 	
-	vids = open('TED_videos.txt', 'w')
+	vids = open('videos.txt', 'w')
 
 	
 	'''
