@@ -1,13 +1,13 @@
 import numpy as np
 import sklearn.cluster
-import get_features2
+import get_features
 
 import matplotlib.pyplot as plt
 
 
 folder = '../TED/'
 
-X = get_features2.get_input(folder)
+X = get_features.get_input(folder)
 
 np.savetxt('data.txt',X)
 
