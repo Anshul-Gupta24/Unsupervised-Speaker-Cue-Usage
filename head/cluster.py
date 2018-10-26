@@ -29,9 +29,9 @@ X5 = []
 
 
 labels = db.labels_
-f1 = open('TED_labels0.txt','w')
-f2 = open('TED_labels1.txt','w')
-f3 = open('TED_labels2.txt','w')
+f1 = open('labels0.txt','w')
+f2 = open('labels1.txt','w')
+f3 = open('labels2.txt','w')
 f4 = open('labels3.txt','w')
 f5 = open('labels4.txt','w')
 for i, l1 in enumerate(labels):
