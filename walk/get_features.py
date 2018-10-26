@@ -305,13 +305,6 @@ def get_input(root):
 	X = np.array(X)
 
 	
-	#min_max_scaler = preprocessing.MinMaxScaler()
-	#standard_scaler = preprocessing.StandardScaler(with_mean=False)
-
-	#X = min_max_scaler.fit_transform(X)
-	#X = standard_scaler.fit_transform(X)
-	#X = preprocessing.normalize(X)
-
 	mean0 = np.mean(X[:,0])	
 	std0 = np.std(X[:,0])
 	mean1 = np.mean(X[:,1])	
@@ -319,12 +312,6 @@ def get_input(root):
 	mean2 = np.mean(X[:,2])	
 	std2 = np.std(X[:,2])
 
-
-	#scaler = mean0 / mean1
-
-	#X[:,0] *= 
-	#X[:,1] *= scaler
-	#X[:,2] *= 0.014
 
 	print mean0
 	print std0
