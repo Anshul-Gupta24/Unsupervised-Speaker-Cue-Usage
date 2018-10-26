@@ -16,26 +16,18 @@ def get_features(root, f):
 	########
 	# DROP LAST 10 sec
 
-	#s = num_frames - 250
 	#df.drop(df.index[num_frames-250:num_frames], inplace = True)
 	#num_frames = num_frames - 250
-
-	
-
 
 	if(df.shape[0] < 250):
 		return None
 
-
 	########
-	
-
 
 
 	neck_x = df.iloc[:,3:4].values
-	#neck_x = df.iloc[:,24:25].values
 	neck_y = df.iloc[:,1:2].values
-	neck_conf = df.iloc[:,5:6].values
+	#neck_conf = df.iloc[:,5:6].values
 	nose_y = df.iloc[:,4:5].values
 	#nose_conf = df.iloc[:,2:3].values
 	shoulder1_x = df.iloc[:,15:16].values
@@ -50,14 +42,15 @@ def get_features(root, f):
 	
 	###
 
-
-	zoom = nose_y - neck_y
-
+	
 	frames = num_frames
 
 	# get cuts in video clip
+	# Removed in favour of more accurate cuts from pyscenedetect tool
 
 	'''
+	zoom = nose_y - neck_y
+
 	cuts = []
 	for i in range(1,frames):
 		if((abs(neck_x[i] - neck_x[i-1])>10) or (abs(zoom[i] - zoom[i-1]) > 10)):
@@ -67,18 +60,7 @@ def get_features(root, f):
 			#else:
 				cuts.append(i)
 	cuts.append(frames)
-	'''
-
-
-	#df_cuts = pd.read_csv(root+'shots/'+f[5:], skiprows=[0])
-
-	#cuts = df_cuts['Frame Number (Start)'].values
-	#cuts = [int(c) for c in cuts]
-	cuts = []
-	cuts.append(num_frames)
 	
-	#print cuts
-
 	# remove cuts where no person is detected
 
 	#cs=0
@@ -86,15 +68,20 @@ def get_features(root, f):
 	#	if(np.sum(neck_x[cs:ce]) == 0):
 	#		cuts.remove(ce)
 
+	'''
 
+	# Get cuts in video
+	# Obtained using pyscenedetect library
+
+	df_cuts = pd.read_csv(root+'shots/'+f[5:], skiprows=[0])
+
+	cuts = df_cuts['Frame Number (Start)'].values
+	cuts = [int(c) for c in cuts]
+	#cuts = []
+	cuts.append(num_frames)
 	#print cuts
 
-
-
-
-
-
-
+	
 	# get inverse zoom level for every cut; zoom = (nose_y - neck_y)
 
 	cs = 0
@@ -102,32 +89,21 @@ def get_features(root, f):
 	#izoom[cs]=1
 	for ce in cuts:
 
-
 		if (np.mean(nose_y[cs:ce])==0) or (np.mean(neck_y[cs:ce])==0):
 			izoom[cs] = 0
-
 
 		else:
 			zoom = np.mean(abs(nose_y[cs:ce] - neck_y[cs:ce]))
 			#izoom[cs] = (1 / zoom) * 5
 			izoom[cs] = 1
 	
-		#print izoom[cs]
+	#	print izoom[cs]
 	#	izoom[cs]=1
 		cs = ce
 
 	#print izoom
 
-	####
 	
-	#	Note: All features are normalized by the inverse of the zoom level
-
-	####
-
-
-
-
-
 	def remove_zeros(arr):
 
 		non_zero = []
@@ -138,16 +114,20 @@ def get_features(root, f):
 
 
 		return non_zero
+	
+	
+	####
+	
+	#	Features
+	#	Note: All features are normalized by the inverse of the zoom level
 
+	####
 
 
 
 	full_data = remove_zeros(neck_x)
 	if(len(full_data)<250):
 		return None
-
-
-
 
 
 	# FEATURE 1: std dev of x axis movement across a cut
@@ -182,7 +162,6 @@ def get_features(root, f):
 	print ''
 
 
-
 	# FEATURE 2: speed of x axis movement across a cut
 
 	cs = 0
@@ -207,7 +186,6 @@ def get_features(root, f):
 	#print neck_x_speed
 	print ''
 	print ''
-
 
 
 	'''	
@@ -283,24 +261,8 @@ def get_features(root, f):
 	neck_x_acc = acc / frames_used
 
 
-
-	#neck_x_mean = np.mean(neck_x)
-	#neck_y_mean = np.mean(neck_y)
-
-	# can be normalized...
-
-	#neck_x_std = np.std(neck_x,1)
-	#neck_y_std = np.std(neck_y,1)
-	#neck_x_std_mean = np.mean(neck_x_std)
-	#neck_y_std_mean = np.mean(neck_y_std)
-
-	#return neck_x_mean, neck_x_std_mean, neck_y_mean, neck_y_std_mean
-	#return neck_x_std_mean, neck_x_speed, neck_y_std_mean, neck_y_speed
-	#return neck_x_std_mean, 10*neck_x_speed#, neck_y_std_mean
-
-
 	return neck_x_std_mean, neck_x_speed, neck_x_acc#, neck_y_std_mean
-	#return neck_x_std_mean
+	
 	
 def get_input(root):
 	
@@ -397,6 +359,6 @@ def get_input(root):
 if __name__ == '__main__':
 
 	X = get_input('../Anshul/')
-	print 'X ', X
+	#print 'X ', X
 	#plt.scatter(X[:,0],X[:,1])	
 	#plt.show()
