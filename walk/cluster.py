@@ -4,7 +4,7 @@ import numpy as np
 
 import matplotlib.pyplot as plt
 
-folder = '../Classroom/'
+folder = '../TED/'
 
 X = get_features.get_input(folder)
 
