@@ -345,7 +345,7 @@ def get_input(root):
 
 if __name__ == '__main__':
 
-	X = get_input('../Anshul/')
+	X = get_input('../TED/')
 	#print 'X ', X
 	#plt.scatter(X[:,0],X[:,1])	
 	#plt.show()
