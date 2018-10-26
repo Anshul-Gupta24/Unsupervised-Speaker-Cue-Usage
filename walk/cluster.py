@@ -16,13 +16,6 @@ db = sklearn.cluster.KMeans(n_clusters=3).fit(X)
 means = db.cluster_centers_
 
 print means
-
-#folder_pred = './vids_csv/'
-
-#X_pred = get_features.get_input(folder_pred)
-
-#print db.predict(X_pred)
-
 print 
 
 
