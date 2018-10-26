@@ -16,32 +16,24 @@ def get_features(root, f):
 	########
 	# DROP LAST 10 sec
 
-	#s = num_frames - 250
 	#df.drop(df.index[num_frames-250:num_frames], inplace = True)
 	#num_frames = num_frames - 250
-
 	
-
-
 	if(df.shape[0] < 250):
 		return None
-
 
 	########
 	
 
-
-
 	neck_x = df.iloc[:,3:4].values
 	neck_y = df.iloc[:,4:5].values
-	neck_conf = df.iloc[:,5:6].values
+	#neck_conf = df.iloc[:,5:6].values
 	nose_y = df.iloc[:,1:2].values
 	#nose_conf = df.iloc[:,2:3].values
 	nose_x = df.iloc[:,0:1].values
         nosenorm_x = nose_x - neck_x
 
 
-	
 	### normalize by confidence
 
 	#neck_x = np.multiply(neck_x, neck_conf)
@@ -50,14 +42,15 @@ def get_features(root, f):
 	
 	###
 
-
-	zoom = nose_y - neck_y
-
+	
 	frames = num_frames
 
 	# get cuts in video clip
+	# Removed in favour of more accurate cuts from pyscenedetect tool
 
 	'''
+	zoom = nose_y - neck_y
+
 	cuts = []
 	for i in range(1,frames):
 		if((abs(neck_x[i] - neck_x[i-1])>10) or (abs(zoom[i] - zoom[i-1]) > 10)):
@@ -67,17 +60,7 @@ def get_features(root, f):
 			#else:
 				cuts.append(i)
 	cuts.append(frames)
-	'''
 
-
-	df_cuts = pd.read_csv(root+'shots/'+f[5:], skiprows=[0])
-
-	cuts = df_cuts['Frame Number (Start)'].values
-	cuts = [int(c) for c in cuts]
-	#cuts = []
-	cuts.append(num_frames)
-	
-	#print cuts
 
 	# remove cuts where no person is detected
 
@@ -86,13 +69,18 @@ def get_features(root, f):
 	#	if(np.sum(neck_x[cs:ce]) == 0):
 	#		cuts.remove(ce)
 
+	'''
 
+	# Get cuts in video
+	# Obtained using pyscenedetect library
+
+	df_cuts = pd.read_csv(root+'shots/'+f[5:], skiprows=[0])
+
+	cuts = df_cuts['Frame Number (Start)'].values
+	cuts = [int(c) for c in cuts]
+	#cuts = []
+	cuts.append(num_frames)
 	#print cuts
-
-
-
-
-
 
 
 	# get inverse zoom level for every cut; zoom = (nose_y - neck_y)
@@ -112,22 +100,13 @@ def get_features(root, f):
 			izoom[cs] = (1 / zoom) * 5
 			#izoom[cs] = 1
 	
-		#print izoom[cs]
+	#	print izoom[cs]
 	#	izoom[cs]=1
 		cs = ce
 
 	#print izoom
-
-	####
 	
-	#	Note: All features are normalized by the inverse of the zoom level
-
-	####
-
-
-
-
-
+	
 	def remove_zeros(arr):
 
 		non_zero = []
@@ -139,16 +118,7 @@ def get_features(root, f):
 
 		return non_zero
 
-
-
-
-	full_data = remove_zeros(nosenorm_x)
-	if(len(full_data)<250):
-		return None
-
-
-
-
+	
 	def intersection(arr1, arr2):
 
 		inter = []
@@ -159,10 +129,21 @@ def get_features(root, f):
 
 		return inter
 
+	
+	####
+	
+	#	Features
+	#	Note: All features are normalized by the inverse of the zoom level
 
+	####
 
+	
 
+	full_data = remove_zeros(nosenorm_x)
+	if(len(full_data)<250):
+		return None
 
+	
 	# FEATURE 1: std dev of x axis movement across a cut
 	
 	cs=0
@@ -318,25 +299,10 @@ def get_features(root, f):
 
 	nosenorm_x_acc = acc / frames_used
 
-
-
-	#neck_x_mean = np.mean(neck_x)
-	#neck_y_mean = np.mean(neck_y)
-
-	# can be normalized...
-
-	#neck_x_std = np.std(neck_x,1)
-	#neck_y_std = np.std(neck_y,1)
-	#neck_x_std_mean = np.mean(neck_x_std)
-	#neck_y_std_mean = np.mean(neck_y_std)
-
-	#return neck_x_mean, neck_x_std_mean, neck_y_mean, neck_y_std_mean
-	#return neck_x_std_mean, neck_x_speed, neck_y_std_mean, neck_y_speed
-	#return neck_x_std_mean, 10*neck_x_speed#, neck_y_std_mean
-
-
+	
 	return nosenorm_x_std_mean, nosenorm_x_speed, nosenorm_x_acc#, neck_y_std_mean
-	#return neck_x_std_mean
+	
+	
 	
 def get_input(root):
 	
@@ -378,14 +344,7 @@ def get_input(root):
 
 	X = np.array(X)
 
-	
-	#min_max_scaler = preprocessing.MinMaxScaler()
-	#standard_scaler = preprocessing.StandardScaler(with_mean=False)
-
-	#X = min_max_scaler.fit_transform(X)
-	#X = standard_scaler.fit_transform(X)
-	#X = preprocessing.normalize(X)
-
+		
 	mean0 = np.mean(X[:,0])	
 	std0 = np.std(X[:,0])
 	mean1 = np.mean(X[:,1])	
@@ -393,13 +352,7 @@ def get_input(root):
 	mean2 = np.mean(X[:,2])	
 	std2 = np.std(X[:,2])
 
-
-	#scaler = mean0 / mean1
-
-	#X[:,0] *= 
-	#X[:,1] *= scaler
-	#X[:,2] *= 0.014
-
+	
 	print mean0
 	print std0
 	print mean1
