@@ -1,9 +1,9 @@
 import random
 
 
-vids = open('TED_videos.txt','r').read().split()
+vids = open('videos.txt','r').read().split()
 
-f = open('TED_labels1.txt','r').read().split()
+f = open('labels1.txt','r').read().split()
 
 f = [int(v) for v in f]
 
