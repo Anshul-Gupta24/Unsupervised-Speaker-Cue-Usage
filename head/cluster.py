@@ -5,8 +5,7 @@ import get_features2
 import matplotlib.pyplot as plt
 
 
-
-folder = '../Anshul/'
+folder = '../TED/'
 
 X = get_features2.get_input(folder)
 
@@ -18,13 +17,6 @@ db = sklearn.cluster.KMeans(n_clusters=3).fit(X)
 means = db.cluster_centers_
 
 print means
-
-#folder_pred = './vids_csv/'
-
-#X_pred = get_features.get_input(folder_pred)
-
-#print db.predict(X_pred)
-
 print 
 
 
@@ -33,7 +25,6 @@ X2 = []
 X3 = []
 X4 = []
 X5 = []
-
 
 
 
@@ -111,12 +102,7 @@ c = plt.scatter(X3[:,0],X3[:,1],c='b')
 
 #plt.legend((a,b),('Cluster1', 'Cluster2'))
 plt.legend((a,b,c),('Cluster1', 'Cluster2', 'Cluster3'))
-
-
 plt.show()
-
-
-
 
 print ""
 print ""
