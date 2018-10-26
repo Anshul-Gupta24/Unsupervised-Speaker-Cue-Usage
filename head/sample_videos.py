@@ -7,7 +7,7 @@ f = open('labels1.txt','r').read().split()
 
 f = [int(v) for v in f]
 
-f_chosen = random.sample(f,50)
+f_chosen = random.sample(f,25)
 
 
 for v in f_chosen:
