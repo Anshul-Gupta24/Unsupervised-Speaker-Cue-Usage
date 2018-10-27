@@ -7,7 +7,8 @@
 ### Datasets
 #### Download the files 'ted_main.csv' and 'transcripts.csv' from https://www.kaggle.com/rounakbanik/ted-talks.
 #### Also download the file 'ted_en-20160408.zip' from https://github.com/mleue/oxford-deep-nlp-2017-solutions/tree/master/practical-2.
-#### Download the TED videos from the links provided in the xml file in 'ted_en-20160408.zip'.</br>
+#### Download the TED videos from the links provided in the xml file in 'ted_en-20160408.zip'.
+#### </br>
 
 
 ### Preprocessing
@@ -16,7 +17,7 @@
 #### Run PysceneDetect (https://github.com/Breakthrough/PySceneDetect) on every clip and store the csv files in TED/shots.
 #### Remove videos with tags such as 'Performance' and 'live music'. To see a list of all tags sorted by frequency of occurence run:
 #### >>python get_tags.py
-#### To modify the tags whose videos you want to remove, edit the /<keywords/> list in get_performance.py
+#### To modify the tags whose videos you want to remove, edit the \<keywords\> list in get_performance.py
 #### To remove the videos from
 ####
 
