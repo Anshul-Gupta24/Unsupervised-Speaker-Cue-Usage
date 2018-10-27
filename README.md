@@ -5,6 +5,16 @@
 # </br>
 
 ####
+### Requirements
+#### * Python 2.7
+#### * Pandas
+#### * Numpy
+#### * Scikit-learn
+#### * Matplotlib
+#### * Openpose
+#### * Pyscenedetect
+#### </br>
+
 ### Datasets
 #### Download the files 'ted_main.csv' and 'transcripts.csv' from https://www.kaggle.com/rounakbanik/ted-talks.
 #### Also download the file 'ted_en-20160408.zip' from https://github.com/mleue/oxford-deep-nlp-2017-solutions/tree/master/practical-2.
