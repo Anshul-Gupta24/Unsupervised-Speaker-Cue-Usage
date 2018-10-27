@@ -26,7 +26,7 @@
 
 ### Running the Code
 #### To quantise the amount of walking, run:
-#### >>python /walk/cluster.py
+#### ```>>python /walk/cluster.py```
 #### This creates three files labels1.txt, labels2.txt and labels3.txt, containing the video names corresponding to the amount of cue usage.
 #### To sample videos from any of the clusters, run:
 #### >>python sample_videos \<labelX.txt\>
