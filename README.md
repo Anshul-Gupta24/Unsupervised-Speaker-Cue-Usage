@@ -1,14 +1,14 @@
 ## Unsupervised Speaker Cue Usage Detection in Public Speaking Videos
 
 #### Code for paper:
-#### Gupta, A. & Jayagopi, D. (2018). "Unsupervised Speaker Cue Usage Detection in Public Speaking Videos." *Proceedings of the 29th British Machine Vision Conference Workshop, Vision for Interaction and Behaviour undErstanding.* http://anshul-gupta24.github.io/files/paper1.pdf
+#### Gupta, A. & Jayagopi, D. (2018). "Unsupervised Speaker Cue Usage Detection in Public Speaking Videos." *Proceedings of the 29th British Machine Vision Conference Workshop, Vision for Interaction and Behaviour undErstanding.* http://anshul-gupta24.github.io/files/paper1.pdf<br/>
 
 ####
 ### Datasets
 #### Download the files 'ted_main.csv' and 'transcripts.csv' from https://www.kaggle.com/rounakbanik/ted-talks.
 #### Also download the file 'ted_en-20160408.zip' from https://github.com/mleue/oxford-deep-nlp-2017-solutions/tree/master/practical-2.
-#### Download the TED videos from the links provided in the xml file in 'ted_en-20160408.zip'.
-####
+#### Download the TED videos from the links provided in the xml file in 'ted_en-20160408.zip'.<br/>
+
 
 ### Preprocessing
 #### Extract the last 1 minute of every video in the dataset.
