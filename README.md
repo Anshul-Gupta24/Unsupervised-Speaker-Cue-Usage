@@ -6,7 +6,7 @@
 
 ####
 ### Requirements
-<h5> 
+
 * Python 2.7
 * Pandas
 * Numpy
@@ -14,7 +14,7 @@
 * Matplotlib
 * Openpose
 * Pyscenedetect
-</h5>
+
 #### </br>
 
 ### Datasets
