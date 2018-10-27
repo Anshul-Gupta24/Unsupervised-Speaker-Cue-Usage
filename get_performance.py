@@ -2,7 +2,7 @@ import pandas as pd
 import pickle
 
 
-df = pd.read_csv('/home/anshul/tensorflow/tags/transcripts.csv', encoding='utf8')
+df = pd.read_csv('transcripts.csv', encoding='utf8')
 
 urls = df['url'].values
 
@@ -10,7 +10,7 @@ urls = [u[26:-1] for u in urls]
 
 #print urls[2460]
 
-with open('/home/anshul/tensorflow/tags/talk_alltags','rb') as fp:
+with open('talk_alltags','rb') as fp:
 	talk_tags = pickle.load(fp)
 
 with open('name_url','rb') as fp:
