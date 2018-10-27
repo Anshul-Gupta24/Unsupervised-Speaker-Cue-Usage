@@ -15,10 +15,8 @@
 ### Preprocessing
 #### Extract the last 1 minute of every video in the dataset.
 #### Run Openpose (https://github.com/CMU-Perceptual-Computing-Lab/openpose) on every clip and store the csv files in TED/cuts_csv.
-#### Run PysceneDetect (https://github.com/Breakthrough/PySceneDetect) on every clip and store the csv files in TED/shots.
-#### </br>
-#### NOTE: Maintain naming scheme as in the sample files in the folders.
-#### </br>
+#### Run PysceneDetect (https://github.com/Breakthrough/PySceneDetect) on every clip and store the csv files in TED/shots. </br>
+#### NOTE: Maintain naming scheme as in the sample files in the folders. </br>
 #### Remove videos with tags such as 'Performance' and 'live music'. To see a list of all tags sorted by frequency of occurence run:
 #### >>python get_tags.py
 #### To modify the tags whose videos you want to remove, edit the \<keywords\> list in 'get_performance.py'. Then run:
