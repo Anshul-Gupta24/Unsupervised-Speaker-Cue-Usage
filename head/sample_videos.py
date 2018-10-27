@@ -1,13 +1,16 @@
 import random
+import sys
 
+num_samples = 25
+filename = sys.argv[1]
 
 vids = open('videos.txt','r').read().split()
 
-f = open('labels1.txt','r').read().split()
+f = open(filename,'r').read().split()
 
 f = [int(v) for v in f]
 
-f_chosen = random.sample(f,25)
+f_chosen = random.sample(f,num_samples)
 
 
 for v in f_chosen:
