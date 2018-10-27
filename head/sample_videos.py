@@ -18,7 +18,7 @@ for v in f_chosen:
 	print vids[int(v)]
 
 
-f_new = open('head_vids_new.txt','w')
+f_new = open('head_vids.txt','w')
 
 for v in f_chosen:
 
