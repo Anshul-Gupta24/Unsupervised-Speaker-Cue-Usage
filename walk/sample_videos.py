@@ -1,16 +1,24 @@
 import random
+import sys
 
+num_samples = 25
+filename = sys.argv[1]
 
 vids = open('videos.txt','r').read().split()
 
-f = open('labels1.txt','r').read().split()
+f = open(filename,'r').read().split()
 
 f = [int(v) for v in f]
 
-f_chosen = random.sample(f,25)
+f_chosen = random.sample(f,num_samples)
 
 
-f_new = open('nowalking_vids.txt','w')
+for v in f_chosen:
+
+	print vids[int(v)]
+
+
+f_new = open('walk_vids.txt','w')
 
 for v in f_chosen:
 
