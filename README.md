@@ -7,12 +7,12 @@
 ####
 ### Requirements
 #### * Python 2.7
-#### * Pandas
-#### * Numpy
-#### * Scikit-learn
-#### * Matplotlib
-#### * Openpose
-#### * Pyscenedetect
+     * Pandas
+     * Numpy
+     * Scikit-learn
+     * Matplotlib
+     * Openpose
+     * Pyscenedetect
 #### </br>
 
 ### Datasets
