@@ -20,7 +20,8 @@
 #### Remove videos with tags such as 'Performance' and 'live music'. To see a list of all tags sorted by frequency of occurence run:
 #### ```>>python get_tags.py```
 #### To modify the tags whose videos you want to remove, edit the \<keywords\> list in 'get_performance.py'. Then run:
-#### ```>>python get_performance.py``` </br> ```>>python remove_performance.py```
+#### ```>>python get_performance.py
+#### >>python remove_performance.py```
 #### This moves the csv files of the unwanted videos from 'TED/cuts_csv' to 'TED/removed_csv'. 
 #### </br>
 
